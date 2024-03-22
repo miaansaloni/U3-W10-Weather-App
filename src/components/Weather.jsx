@@ -4,7 +4,6 @@ import Card from "react-bootstrap/Card";
 // import { Row, Col } from "react-bootstrap";
 import CurrentWeather from "./CurrentWeather";
 import ForecastWeather from "./ForecastWeather";
-import { CloudSun } from "react-bootstrap-icons";
 
 const apiKey = "e085a7d1659e09c5228310aae9216ab5";
 
