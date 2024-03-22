@@ -4,6 +4,7 @@ import Card from "react-bootstrap/Card";
 // import { Row, Col } from "react-bootstrap";
 import CurrentWeather from "./CurrentWeather";
 import ForecastWeather from "./ForecastWeather";
+import { CloudSun } from "react-bootstrap-icons";
 
 const apiKey = "e085a7d1659e09c5228310aae9216ab5";
 
@@ -45,19 +46,13 @@ const Weather = () => {
 
   return (
     <div id="body">
-      <Search onSearch={fetchWeatherData} />
+      <div className="overlay">
+        <Search onSearch={fetchWeatherData} />
 
-      {currentWeatherData && <CurrentWeather currentWeatherData={currentWeatherData} />}
+        {currentWeatherData && <CurrentWeather currentWeatherData={currentWeatherData} />}
 
-      {forecastWeatherData ? (
-        <ForecastWeather forecastWeatherData={forecastWeatherData} />
-      ) : (
-        <Card>
-          <Card.Body>
-            <Card.Text>Please provide city and country to get forecast weather data :)</Card.Text>
-          </Card.Body>
-        </Card>
-      )}
+        {forecastWeatherData && <ForecastWeather forecastWeatherData={forecastWeatherData} />}
+      </div>
     </div>
   );
 };

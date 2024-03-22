@@ -5,9 +5,9 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 
 function MyNav(favorites, onFavoriteClick) {
   return (
-    <Navbar expand="lg" className="navbar">
+    <Navbar expand="lg" className="navbar text-light">
       <Container fluid>
-        <Navbar.Brand className="logo" href="#home">
+        <Navbar.Brand href="#home">
           <img
             className="logo"
             src="https://cdn0.iconfinder.com/data/icons/pug/512/pug_dog_sticker_emoji_emoticon_rain_umbrella-512.png"
@@ -17,9 +17,10 @@ function MyNav(favorites, onFavoriteClick) {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link>Home</Nav.Link>
             <Nav.Link>Work with us</Nav.Link>
           </Nav>
+          {/* Ancora non funzionante */}
           <NavDropdown title="favorites" id="basic-nav-dropdown">
             <NavDropdown.Item href="#action/3.1"></NavDropdown.Item>
           </NavDropdown>
