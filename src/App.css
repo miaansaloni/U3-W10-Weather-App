@@ -1,0 +1,35 @@
+.logo {
+  width: 40px;
+}
+#body {
+  background-image: url(https://static.vecteezy.com/system/resources/previews/035/766/578/non_2x/snowy-mountain-landscape-illustration-scenery-of-path-to-the-mountain-in-the-cold-season-winter-mountain-landscape-for-background-wallpaper-or-illustration-vector.jpg);
+  background-attachment: fixed;
+  background-size: cover;
+  min-height: 100vh;
+}
+.navbar {
+  background-color: #fb6d48;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 9;
+}
+
+.input input[type="text"] {
+  border-radius: 20px;
+}
+.input-background {
+  background-color: #673f6946;
+  border: none;
+}
+.input-background:focus {
+  background-color: #673f6969;
+}
+.SearchBTN {
+  background-color: #fb6d48;
+  border: transparent;
+  border-radius: 50px;
+}
+.SearchBTN:hover {
+  background-color: #d74b76;
+}

@@ -44,7 +44,7 @@ const Weather = () => {
   };
 
   return (
-    <div>
+    <div id="body">
       <Search onSearch={fetchWeatherData} />
 
       {currentWeatherData && <CurrentWeather currentWeatherData={currentWeatherData} />}
