@@ -44,6 +44,7 @@ const CurrentWeather = ({ currentWeatherData }) => {
                   Wind Speed: <Wind /> {currentWeatherData.wind.speed} m/s
                 </p>
               </Card.Text>
+              {/* Ancora non funzionante */}
               <Button id="addToFavBTN" variant="bg-none">
                 <Heart />
               </Button>
