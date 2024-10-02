@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Search from "./Search";
-import Card from "react-bootstrap/Card";
-// import { Row, Col } from "react-bootstrap";
 import CurrentWeather from "./CurrentWeather";
 import ForecastWeather from "./ForecastWeather";
 
@@ -11,6 +9,16 @@ const Weather = () => {
   const [currentWeatherData, setCurrentWeatherData] = useState(null);
   const [forecastWeatherData, setForecastWeatherData] = useState(null);
   const [error, setError] = useState(null);
+  const [fadeOut, setFadeOut] = useState(false); // Stato per il fade out
+
+  // Simula il fade out dell'immagine dopo 1 secondo
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setFadeOut(true); // Dopo 1 secondo inizia il fade out
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const fetchWeatherData = async ({ city, state, country }) => {
     if (!city || !country) {
@@ -45,6 +53,13 @@ const Weather = () => {
 
   return (
     <div id="body">
+      <div className={`loading-image ${fadeOut ? "fade-out" : ""}`}>
+        <img
+          src="https://cdn0.iconfinder.com/data/icons/pug/512/pug_dog_sticker_emoji_emoticon_rain_umbrella-512.png"
+          alt="Loading"
+        />
+      </div>
+
       <div className="overlay">
         <Search onSearch={fetchWeatherData} />
 

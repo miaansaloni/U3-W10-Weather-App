@@ -26,10 +26,17 @@ const Search = ({ onSearch }) => {
   };
 
   return (
-    <Container fluid>
+    <Container fluid className="pt-5">
       <Row>
         <Col xs={12} md={6} lg={4} xl={4} className="mx-auto my-3">
           <Form id="searchForm" className="mx-auto my-3" noValidate validated={validated} onSubmit={handleSearch}>
+            <div className="d-flex justify-content-center">
+              <img
+                src="https://cdn0.iconfinder.com/data/icons/pug/512/pug_dog_sticker_emoji_emoticon_rain_umbrella-512.png"
+                alt="Loading"
+                width={"40%"}
+              />
+            </div>
             <Form.Group>
               <InputGroup className="input my-2 ">
                 <FormControl
