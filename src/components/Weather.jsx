@@ -9,15 +9,15 @@ const Weather = () => {
   const [currentWeatherData, setCurrentWeatherData] = useState(null);
   const [forecastWeatherData, setForecastWeatherData] = useState(null);
   const [error, setError] = useState(null);
-  const [fadeOut, setFadeOut] = useState(false); // Stato per il fade out
+  const [isLoading, setIsLoading] = useState(true); // Stato per il caricamento
 
-  // Simula il fade out dell'immagine dopo 1 secondo
+  // Simula il fade out dell'immagine dopo 2 secondi
   useEffect(() => {
     const timer = setTimeout(() => {
-      setFadeOut(true); // Dopo 1 secondo inizia il fade out
-    }, 1000);
+      setIsLoading(false); // Dopo 2 secondi, nasconde l'immagine di caricamento
+    }, 2000);
 
-    return () => clearTimeout(timer);
+    return () => clearTimeout(timer); // Pulisce il timer al dismount del componente
   }, []);
 
   const fetchWeatherData = async ({ city, state, country }) => {
@@ -25,7 +25,7 @@ const Weather = () => {
       setError("Please provide city and country");
     }
     try {
-      //Fetch 1 tempo corrente
+      // Fetch 1: tempo corrente
       const currentWeather = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=${city},${state},${country}&appid=${apiKey}`
       );
@@ -35,7 +35,7 @@ const Weather = () => {
       const currentData = await currentWeather.json();
       setCurrentWeatherData(currentData);
 
-      // Fetch 2, tempo futuro
+      // Fetch 2: tempo futuro
       const forecastWeather = await fetch(
         `https://api.openweathermap.org/data/2.5/forecast?q=${city},${state},${country}&appid=${apiKey}`
       );
@@ -53,20 +53,26 @@ const Weather = () => {
 
   return (
     <div id="body">
-      <div className={`loading-image ${fadeOut ? "fade-out" : ""}`}>
-        <img
-          src="https://cdn0.iconfinder.com/data/icons/pug/512/pug_dog_sticker_emoji_emoticon_rain_umbrella-512.png"
-          alt="Loading"
-        />
-      </div>
+      {/* Mostra l'immagine di caricamento solo se isLoading è true */}
+      {isLoading && (
+        <div className="loading-image">
+          <img
+            src="https://cdn0.iconfinder.com/data/icons/pug/512/pug_dog_sticker_emoji_emoticon_rain_umbrella-512.png"
+            alt="Loading"
+          />
+        </div>
+      )}
 
-      <div className="overlay">
-        <Search onSearch={fetchWeatherData} />
+      {/* Mostra l'overlay solo quando isLoading è false */}
+      {!isLoading && (
+        <div className="overlay">
+          <Search onSearch={fetchWeatherData} />
 
-        {currentWeatherData && <CurrentWeather currentWeatherData={currentWeatherData} />}
+          {currentWeatherData && <CurrentWeather currentWeatherData={currentWeatherData} />}
 
-        {forecastWeatherData && <ForecastWeather forecastWeatherData={forecastWeatherData} />}
-      </div>
+          {forecastWeatherData && <ForecastWeather forecastWeatherData={forecastWeatherData} />}
+        </div>
+      )}
     </div>
   );
 };

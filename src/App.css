@@ -51,6 +51,21 @@
   color: white;
 }
 
+@keyframes dogFadeOut {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 .loading-image {
   position: absolute;
   top: 0;
@@ -59,21 +74,18 @@
   margin: 0 auto;
   width: 100vw;
   height: 100vh;
-  transition: 0.8s ease;
+  transition: opacity 0.8s ease;
   z-index: 9;
-  opacity: 1;
-  background-color: #fd886d;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #fd886d;
+  opacity: 1;
 }
 
 .loading-image img {
   width: 50%;
-}
-
-.fade-out {
-  opacity: 0; /* L'immagine scompare con il fade out */
+  animation: dogFadeOut 2s;
 }
 
 /* NAVBAR */
