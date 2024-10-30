@@ -1,6 +1,5 @@
-import { Search } from "react-bootstrap-icons";
-import { Heart } from "react-bootstrap-icons";
-import { Gear } from "react-bootstrap-icons";
+import { Search, Heart, Gear } from "react-bootstrap-icons";
+import { NavLink } from "react-router-dom";
 
 const myNav = () => {
   return (
@@ -16,9 +15,9 @@ const myNav = () => {
           </a>
         </li>
         <li>
-          <a href="#search">
+          <NavLink to="/" activeClassName="active">
             <Search />
-          </a>
+          </NavLink>
         </li>
         <li>
           <a href="#favorites">
@@ -26,7 +25,7 @@ const myNav = () => {
           </a>
         </li>
         <li>
-          <a href="#contact">
+          <a href="#settings">
             <Gear />
           </a>
         </li>

@@ -8,24 +8,34 @@ const CurrentWeather = ({ currentWeatherData }) => {
   };
   const temperatureCelsius = kelvinToCelsius(currentWeatherData.main.temp);
   const feelsLikeCelsius = kelvinToCelsius(currentWeatherData.main.feels_like);
+  const tempMinCelsius = kelvinToCelsius(currentWeatherData.main.temp_min);
+  const tempMaxCelsius = kelvinToCelsius(currentWeatherData.main.temp_max);
   return (
     <Container>
       <Row>
         <Col lg={12} className="mx-auto my-3 text-center">
-          <div>
-            {currentWeatherData.name}, {currentWeatherData.sys.country}
+          <div className="location-name">
+            {currentWeatherData.name}, <span>{currentWeatherData.sys.country}</span>
           </div>
-          <div>{currentWeatherData.weather[0].description}</div>
+          <p className="weather-description">{currentWeatherData.weather[0].description}</p>
 
-          <div className="d-flex justify-content-center align-items-center">
+          <div className="d-flex justify-content-center align-items-baseline temperature-desc">
             <div>
-              <img src={`http://openweathermap.org/img/wn/${currentWeatherData.weather[0].icon}.png`} alt="" />
+              <img
+                className="temperature-img"
+                src={`http://openweathermap.org/img/wn/${currentWeatherData.weather[0].icon}.png`}
+                alt=""
+              />
             </div>
-            {temperatureCelsius.toFixed(1)}°C
-            <ThermometerHalf />
+            <span className="temperature">{temperatureCelsius.toFixed(1)}°C</span>
+            <ThermometerHalf className="temperature-icon" />
           </div>
 
-          <hr />
+          <div className="d-flex align-items-baseline justify-content-center">
+            <p>{tempMaxCelsius.toFixed(1)}°</p>
+            <div className="temperature-bar"></div>
+            <p>{tempMinCelsius.toFixed(1)}°</p>
+          </div>
 
           <div className="d-flex justify-content-between">
             <div>

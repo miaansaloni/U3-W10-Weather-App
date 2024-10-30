@@ -1,4 +1,5 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import InputGroup from "react-bootstrap/InputGroup";
@@ -7,11 +8,12 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { Container } from "react-bootstrap";
 
-const Search = ({ onSearch }) => {
+const Search = () => {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [country, setCountry] = useState("");
   const [validated, setValidated] = useState(false);
+  const navigate = useNavigate();
 
   const handleSearch = (event) => {
     const form = event.currentTarget;
@@ -20,7 +22,7 @@ const Search = ({ onSearch }) => {
       event.stopPropagation();
     } else {
       event.preventDefault();
-      onSearch({ city, state, country });
+      navigate("/weather", { state: { city, state, country } });
     }
     setValidated(true);
   };
@@ -38,48 +40,35 @@ const Search = ({ onSearch }) => {
               />
             </div>
             <Form.Group>
-              <InputGroup className="input my-2 ">
+              <InputGroup className="input my-2">
                 <FormControl
                   type="text"
                   placeholder="City"
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
                   required
-                  className="input-background"
                 />
-                {/* <Form.Control.Feedback type="invalid">Please provide a city.</Form.Control.Feedback> */}
               </InputGroup>
             </Form.Group>
 
             <Form.Group>
-              <InputGroup className="input my-2 ">
-                <FormControl
-                  type="text"
-                  placeholder="State"
-                  value={state}
-                  onChange={(e) => setState(e.target.value)}
-                  required
-                  className="input-background"
-                />
-                {/* <Form.Control.Feedback type="invalid">Please provide a state.</Form.Control.Feedback> */}
+              <InputGroup className="input my-2">
+                <FormControl type="text" placeholder="State" value={state} onChange={(e) => setState(e.target.value)} />
               </InputGroup>
             </Form.Group>
 
             <Form.Group>
-              <InputGroup className="input my-2 ">
+              <InputGroup className="input my-2">
                 <FormControl
                   type="text"
                   placeholder="Country"
                   value={country}
                   onChange={(e) => setCountry(e.target.value)}
                   required
-                  className="input-background"
                 />
-                {/* <Form.Control.Feedback type="invalid">Please provide a country.</Form.Control.Feedback> */}
               </InputGroup>
             </Form.Group>
             <Form.Group className="d-flex justify-content-center">
-              {" "}
               <Button type="submit" className="SearchBTN">
                 Search
               </Button>

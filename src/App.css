@@ -90,8 +90,8 @@
 
 /* NAVBAR */
 .navbar {
-  position: fixed; /* Fissa la navbar */
-  bottom: 0; /* Posiziona la navbar al fondo */
+  position: fixed;
+  bottom: 0;
   left: 0;
   right: 0;
   display: flex;
@@ -152,4 +152,43 @@
 
 .forecast-scroll-container::-webkit-scrollbar-track {
   background-color: #eee;
+}
+
+/* CURRENT */
+.location-name {
+  font-size: 2.5rem;
+  margin-top: 1.5rem;
+}
+.location-name span {
+  font-size: small;
+  font-weight: normal;
+}
+.weather-description {
+  margin: auto;
+  line-height: 40%;
+  font-size: 1.2rem;
+}
+.temperature-img {
+  width: 90px;
+  margin-bottom: 1rem;
+}
+.temperature {
+  font-size: 2.5rem;
+}
+.temperature-icon {
+  font-size: 35px;
+  line-height: 0%;
+}
+.temperature-bar {
+  background: rgb(255, 0, 0);
+  background: linear-gradient(
+    93deg,
+    rgba(255, 0, 0, 1) 0%,
+    rgba(249, 218, 42, 0.6018957345971564) 44%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  display: flex;
+  flex-grow: 1;
+  height: 0.5rem;
+  border-radius: 10px;
 }
