@@ -1,50 +1,36 @@
 import React from "react";
-import { Row, Col, Card, Container } from "react-bootstrap";
-import { ThermometerHalf } from "react-bootstrap-icons";
-import { CloudSun } from "react-bootstrap-icons";
-import { CloudFog2 } from "react-bootstrap-icons";
-import { Wind } from "react-bootstrap-icons";
+import { Row, Col, Container } from "react-bootstrap";
+
 const kelvinToCelsius = (kelvin) => {
   return kelvin - 273.15;
 };
 const ForecastWeather = ({ forecastWeatherData }) => {
   return (
     <div>
-      <h2>Forecast Weather</h2>
+      <h2>Previsioni orarie</h2>
       <Container fluid>
-        <Row>
-          {forecastWeatherData.list.map((forecast, i) => (
-            <Col key={i} xs={12} sm={6} md={4} lg={3} xl={2} className="my-3 ">
-              <Card className="custom-card ">
-                <Card.Body className="text-center">
-                  {" "}
-                  <Card.Img
-                    variant="top"
-                    src={`http://openweathermap.org/img/wn/${forecast.weather[0].icon}.png`}
-                    alt="Weather Icon"
-                    style={{ width: "70px", height: "70px" }}
-                  />
-                  <Card.Title>Date: {forecast.dt_txt}</Card.Title>
-                  <Card.Text>
-                    <p>
-                      Temperature: <ThermometerHalf />
-                      {kelvinToCelsius(forecast.main.temp).toFixed(1)}°C
-                    </p>
-                    <p>
-                      Weather: <CloudSun /> {forecast.weather[0].description}
-                    </p>
-                    <p>
-                      Humidity: <CloudFog2 /> {forecast.main.humidity}%
-                    </p>
-                    <p>
-                      Wind Speed: <Wind /> {forecast.wind.speed} m/s
-                    </p>
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))}
-        </Row>
+        <div className="forecast-scroll-container">
+          {" "}
+          {/* Div per lo scroll orizzontale */}
+          <Row className="flex-nowrap">
+            {" "}
+            {/* flex-nowrap per evitare che le colonne vadano a capo */}
+            {forecastWeatherData.list.slice(0, 24).map(
+              (
+                forecast,
+                i // Prende solo i primi 24 elementi
+              ) => (
+                <Col key={i} className="my-3">
+                  <div className="forecast-item">
+                    <p>{forecast.dt_txt.slice(11, 16)}</p>
+                    <img src={`http://openweathermap.org/img/wn/${forecast.weather[0].icon}.png`} alt="" />
+                    <p>{kelvinToCelsius(forecast.main.temp).toFixed(1)}°C</p>
+                  </div>
+                </Col>
+              )
+            )}
+          </Row>
+        </div>
       </Container>
     </div>
   );

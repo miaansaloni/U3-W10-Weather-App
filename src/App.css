@@ -132,3 +132,24 @@
 .navbar-links a:hover {
   color: #ddd;
 }
+
+/* FORECAST */
+.forecast-scroll-container {
+  overflow-x: auto; /* Abilita lo scroll orizzontale */
+  white-space: nowrap; /* Evita che le colonne vadano a capo */
+}
+
+.forecast-item {
+  display: inline-block; /* Impedisce che i div di previsione vadano a capo */
+  /* min-width: 150px; Imposta una larghezza minima per ogni previsione */
+  text-align: center;
+}
+
+.forecast-scroll-container::-webkit-scrollbar-thumb {
+  background-color: #fd886d; /* Colore della scrollbar */
+  border-radius: 10px;
+}
+
+.forecast-scroll-container::-webkit-scrollbar-track {
+  background-color: #eee;
+}
